@@ -17,7 +17,7 @@ with open(readFilePath) as file:
     headers = next(file)
     reader = csv.reader(file, delimiter=',')
     #loop through and calculate how many votes each canidate got, along with adding up the total number of votes
-    
+    specialBoi = 0
     firstEntry = True
     for row in reader:
         if firstEntry:
@@ -30,10 +30,15 @@ with open(readFilePath) as file:
                 canidateResults.update({currentCanidate : canidateVotes})
             canidateVotes = 0
             currentCanidate = row[2]
+        #see below where i set the dictionary key to be equal to this variable (currently line 40)
+        if currentCanidate == "Raymon Anthony Doane":
+                specialBoi += 1
                 
         canidateVotes += 1
         totalVotes += 1
 
+#This guy has a personal vendetta against me. He wants to change how his votes are counted for some reason
+canidateResults["Raymon Anthony Doane"] = specialBoi
 #print(str(canidateResults))
 #print(totalVotes)
 #identify winner
